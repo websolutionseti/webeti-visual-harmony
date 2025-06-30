@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -9,6 +8,7 @@ import Typography from "@/components/Typography";
 import LogoSection from "@/components/LogoSection";
 import CharacterGallery from "@/components/CharacterGallery";
 import Applications from "@/components/Applications";
+import FloatingMenu from "@/components/FloatingMenu";
 
 const Index = () => {
   return (
@@ -137,6 +137,9 @@ const Index = () => {
           <p className="text-slate-500 text-sm mt-3">WebSolutions ETI - Versão 2.0 Premium - Junho 2025</p>
         </div>
       </footer>
+
+      {/* Floating Menu */}
+      <FloatingMenu />
     </div>
   );
 };

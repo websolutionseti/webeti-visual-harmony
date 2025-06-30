@@ -71,6 +71,39 @@ All colors MUST be HSL.
     --space-xxl: calc(var(--space-unit) * 8);
   }
 
+  /* Light Theme */
+  .light-theme {
+    --background: 0 0% 96%;     /* Cinza Claro */
+    --foreground: 210 11% 11%;  /* Grafite */
+
+    --card: 0 0% 100%;          /* Branco */
+    --card-foreground: 210 11% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11% 11%;
+
+    --primary: 210 100% 18%;    /* Azul Profundo mantido */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 85%;      /* Prata mais clara */
+    --secondary-foreground: 210 11% 11%;
+
+    --muted: 0 0% 92%;
+    --muted-foreground: 210 11% 40%;
+
+    --accent: 45 85% 50%;       /* Dourado mantido */
+    --accent-foreground: 0 0% 100%;
+
+    --border: 0 0% 85%;
+    --input: 0 0% 90%;
+    --ring: 210 100% 18%;
+
+    /* Override design system colors for light theme */
+    --color-dark-bg: 0 0% 96%;
+    --color-text-light: 210 11% 11%;
+    --color-text-dark: 0 0% 100%;
+  }
+
   .dark {
     /* Já estamos usando tema escuro como padrão */
   }
@@ -87,6 +120,11 @@ All colors MUST be HSL.
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .light-theme body {
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(0 0% 92%) 100%);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -136,5 +174,10 @@ All colors MUST be HSL.
   .btn-premium-secondary:hover {
     @apply bg-secondary text-background;
     transform: translateY(-2px);
+  }
+
+  /* Smooth transitions for theme switching */
+  * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   }
 }
