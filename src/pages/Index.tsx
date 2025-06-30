@@ -12,51 +12,63 @@ import Applications from "@/components/Applications";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-background via-slate-950 to-slate-900">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="pt-20 pb-16 px-6">
+      {/* Hero Section - Premium */}
+      <section className="pt-24 pb-20 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-5xl font-thin text-slate-800 mb-4">
-            WebSolutions <span className="font-semibold text-[#3498DB]">ETI</span>
+          <h1 className="text-6xl font-thin text-slate-300 mb-6">
+            WebSolutions <span className="font-semibold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">ETI</span>
           </h1>
-          <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-            Guia de Estilo & Identidade Visual
+          <p className="text-2xl text-slate-400 mb-4 max-w-4xl mx-auto font-light">
+            Sistema de Identidade Visual Premium
           </p>
-          <Badge variant="outline" className="text-lg px-6 py-2 bg-white/80 backdrop-blur-sm">
-            Versão 1.0 - Junho 2025
+          <p className="text-lg text-slate-500 mb-12 max-w-3xl mx-auto">
+            Tecnologia que entende o seu negócio. Soluções digitais inteligentes para empresas que buscam excelência.
+          </p>
+          <Badge variant="outline" className="text-lg px-8 py-3 bg-slate-900/50 backdrop-blur-sm border-slate-700 text-slate-300">
+            Versão 2.0 Premium - Junho 2025
           </Badge>
         </div>
       </section>
 
-      {/* Overview Section */}
-      <section id="overview" className="py-16 px-6">
+      {/* Overview Section - Reformulado */}
+      <section id="overview" className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-semibold text-slate-800 mb-8 text-center">Visão Geral</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-white/80 backdrop-blur-sm shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-xl text-[#3498DB]">Nossa Missão</CardTitle>
+          <h2 className="text-4xl font-light text-slate-200 mb-12 text-center">Visão Estratégica</h2>
+          <div className="grid md:grid-cols-2 gap-12">
+            <Card className="bg-slate-900/50 backdrop-blur-sm border-slate-800 shadow-2xl">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-2xl text-blue-400 font-semibold">Nossa Essência</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-slate-600 leading-relaxed">
-                  A WebSolutions ETI é uma empresa de soluções digitais para pequenas empresas e autônomos, 
-                  com atuação técnica e estratégica. Nossa identidade visual equilibra tecnologia com acolhimento, 
-                  estratégia com execução.
+                <p className="text-slate-300 leading-relaxed text-lg">
+                  A WebSolutions ETI representa a convergência entre expertise técnica e visão estratégica. 
+                  Nossa identidade visual reflete sophisticação, confiança e inovação, posicionando-nos como 
+                  parceiros preferenciais para empresas que buscam transformação digital de alto nível.
                 </p>
               </CardContent>
             </Card>
             
-            <Card className="bg-white/80 backdrop-blur-sm shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-xl text-[#2ECC71]">Nossos Pilares</CardTitle>
+            <Card className="bg-slate-900/50 backdrop-blur-sm border-slate-800 shadow-2xl">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-2xl text-yellow-500 font-semibold">Pilares de Excelência</CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2 text-slate-600">
-                  <li className="flex items-center"><span className="w-2 h-2 bg-[#2ECC71] rounded-full mr-3"></span>Acolhimento e profissionalismo</li>
-                  <li className="flex items-center"><span className="w-2 h-2 bg-[#2ECC71] rounded-full mr-3"></span>Confiança e inovação</li>
-                  <li className="flex items-center"><span className="w-2 h-2 bg-[#2ECC71] rounded-full mr-3"></span>Clareza e impacto visual</li>
+                <ul className="space-y-4 text-slate-300 text-lg">
+                  <li className="flex items-center">
+                    <span className="w-3 h-3 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full mr-4"></span>
+                    Sofisticação e credibilidade técnica
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-3 h-3 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full mr-4"></span>
+                    Inovação com propósito estratégico
+                  </li>
+                  <li className="flex items-center">
+                    <span className="w-3 h-3 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full mr-4"></span>
+                    Comunicação clara e impactante
+                  </li>
                 </ul>
               </CardContent>
             </Card>
@@ -64,55 +76,65 @@ const Index = () => {
         </div>
       </section>
 
-      <Separator className="mx-6" />
+      <Separator className="mx-6 bg-slate-800" />
 
       {/* Color Palette Section */}
       <ColorPalette />
 
-      <Separator className="mx-6" />
+      <Separator className="mx-6 bg-slate-800" />
 
       {/* Typography Section */}
       <Typography />
 
-      <Separator className="mx-6" />
+      <Separator className="mx-6 bg-slate-800" />
 
       {/* Logo Section */}
       <LogoSection />
 
-      <Separator className="mx-6" />
+      <Separator className="mx-6 bg-slate-800" />
 
       {/* Character Gallery */}
       <CharacterGallery />
 
-      <Separator className="mx-6" />
+      <Separator className="mx-6 bg-slate-800" />
 
       {/* Applications */}
       <Applications />
 
-      {/* Export Section */}
-      <section className="py-16 px-6 bg-gradient-to-r from-[#3498DB] to-[#2ECC71]">
+      {/* Export Section - Premium */}
+      <section className="py-20 px-6 bg-gradient-to-r from-blue-900/30 via-slate-900/50 to-blue-900/30">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold text-white mb-6">Pronto para exportar?</h2>
-          <p className="text-white/90 mb-8 text-lg">
-            Este guia de estilo está pronto para ser convertido em PDF para impressão e compartilhamento.
+          <h2 className="text-4xl font-light text-slate-200 mb-8">Documentação Profissional</h2>
+          <p className="text-slate-300 mb-12 text-xl leading-relaxed">
+            Sistema completo pronto para implementação corporativa, com especificações técnicas 
+            para impressão offset e aplicações digitais de alta qualidade.
           </p>
-          <Button 
-            size="lg" 
-            variant="secondary" 
-            className="bg-white text-[#3498DB] hover:bg-white/90 font-semibold px-8 py-3"
-          >
-            Exportar PDF
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Button 
+              size="lg" 
+              className="btn-premium btn-premium-primary text-lg px-8 py-4 font-semibold"
+            >
+              Exportar PDF Premium
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="btn-premium btn-premium-secondary text-lg px-8 py-4 font-semibold"
+            >
+              Especificações CMYK
+            </Button>
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 px-6 bg-slate-900 text-white">
+      {/* Footer - Premium */}
+      <footer className="py-12 px-6 bg-slate-950 border-t border-slate-800">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-slate-300">
-            Documento criado por <span className="font-semibold">Guilherme Puentes</span> - Product Designer & Webmaster
+          <p className="text-slate-400 text-lg">
+            Sistema de Design criado por <span className="font-semibold text-slate-300">Guilherme Puentes</span> 
+            <span className="text-slate-500"> - Product Designer & Webmaster</span>
           </p>
-          <p className="text-slate-400 text-sm mt-2">WebSolutions ETI - Junho 2025</p>
+          <p className="text-slate-500 text-sm mt-3">WebSolutions ETI - Versão 2.0 Premium - Junho 2025</p>
         </div>
       </footer>
     </div>

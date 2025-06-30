@@ -5,88 +5,104 @@ import { Badge } from "@/components/ui/badge";
 const ColorPalette = () => {
   const colors = [
     {
-      name: "Azul Tecnológico",
-      hex: "#3498DB",
-      rgb: "52, 152, 219",
-      cmyk: "76, 31, 0, 14",
-      application: "Fundo, confiança, IA, tecnologia"
+      name: "Grafite Corporativo",
+      hex: "#1C1C1C",
+      rgb: "28, 28, 28",
+      cmyk: "0, 0, 0, 89",
+      application: "Fundo principal, autoridade, sofisticação premium"
     },
     {
-      name: "Verde Inovação",
-      hex: "#2ECC71",
-      rgb: "46, 204, 113",
-      cmyk: "77, 0, 45, 20",
-      application: "CTAs, crescimento, eficiência"
+      name: "Azul Profundo",
+      hex: "#002B5B",
+      rgb: "0, 43, 91",
+      cmyk: "100, 53, 0, 64",
+      application: "CTAs primários, confiança, tecnologia de ponta"
     },
     {
-      name: "Preto",
-      hex: "#000000",
-      rgb: "0, 0, 0",
-      cmyk: "0, 0, 0, 100",
-      application: "Fundo escuro, contraste forte"
+      name: "Dourado Suave",
+      hex: "#D4AF37",
+      rgb: "212, 175, 55",
+      cmyk: "0, 17, 74, 17",
+      application: "Acentos premium, excelência, diferenciação"
     },
     {
-      name: "Branco",
-      hex: "#FFFFFF",
-      rgb: "255, 255, 255",
-      cmyk: "0, 0, 0, 0",
-      application: "Tipografia clara, áreas de respiro"
+      name: "Prata Metálico",
+      hex: "#C0C0C0",
+      rgb: "192, 192, 192",
+      cmyk: "0, 0, 0, 25",
+      application: "Elementos secundários, elegância, neutralidade"
+    },
+    {
+      name: "Bege Quente",
+      hex: "#E5D8C0",
+      rgb: "229, 216, 192",
+      cmyk: "0, 6, 16, 10",
+      application: "Fundos suaves, acolhimento, humanização"
+    },
+    {
+      name: "Azul Acinzentado",
+      hex: "#CBD5E1",
+      rgb: "203, 213, 225",
+      cmyk: "10, 5, 0, 12",
+      application: "Textos auxiliares, informações técnicas"
     }
   ];
 
   return (
-    <section id="colors" className="py-16 px-6">
+    <section id="colors" className="py-20 px-6">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-semibold text-slate-800 mb-8 text-center">Paleta de Cores</h2>
+        <h2 className="text-4xl font-light text-slate-200 mb-12 text-center">Paleta Premium</h2>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {colors.map((color) => (
-            <Card key={color.name} className="bg-white/80 backdrop-blur-sm shadow-lg overflow-hidden">
+            <Card key={color.name} className="bg-slate-900/50 backdrop-blur-sm border-slate-800 shadow-2xl overflow-hidden">
               <div 
-                className="h-32 w-full"
+                className="h-40 w-full relative"
                 style={{ backgroundColor: color.hex }}
-              ></div>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg text-slate-800">{color.name}</CardTitle>
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/20"></div>
+              </div>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-xl text-slate-200 font-semibold">{color.name}</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="space-y-1">
-                  <Badge variant="outline" className="font-mono text-xs">{color.hex}</Badge>
-                  <p className="text-xs text-slate-500">RGB: {color.rgb}</p>
-                  <p className="text-xs text-slate-500">CMYK: {color.cmyk}</p>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <Badge variant="outline" className="font-mono text-sm bg-slate-800 border-slate-700 text-slate-300">{color.hex}</Badge>
+                  <p className="text-sm text-slate-400">RGB: {color.rgb}</p>
+                  <p className="text-sm text-slate-400">CMYK: {color.cmyk}</p>
                 </div>
-                <p className="text-sm text-slate-600 leading-relaxed">{color.application}</p>
+                <p className="text-sm text-slate-300 leading-relaxed font-medium">{color.application}</p>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        <div className="mt-12 bg-white/80 backdrop-blur-sm rounded-lg p-8 shadow-lg">
-          <h3 className="text-xl font-semibold text-slate-800 mb-4">Combinações Recomendadas</h3>
-          <div className="grid md:grid-cols-3 gap-6">
+        <div className="mt-16 bg-slate-900/30 backdrop-blur-sm rounded-2xl p-10 border border-slate-800">
+          <h3 className="text-2xl font-semibold text-slate-200 mb-8 text-center">Combinações Estratégicas</h3>
+          <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="flex h-16 rounded-lg overflow-hidden mb-3">
-                <div className="flex-1 bg-[#3498DB]"></div>
-                <div className="flex-1 bg-white"></div>
+              <div className="flex h-20 rounded-xl overflow-hidden mb-4 shadow-lg">
+                <div className="flex-1 bg-[#1C1C1C]"></div>
+                <div className="flex-1 bg-[#002B5B]"></div>
               </div>
-              <p className="text-sm font-medium">Azul + Branco</p>
-              <p className="text-xs text-slate-500">Confiança e clareza</p>
+              <p className="text-lg font-semibold text-slate-200">Grafite + Azul Profundo</p>
+              <p className="text-sm text-slate-400 mt-1">Autoridade e confiança corporativa</p>
             </div>
             <div className="text-center">
-              <div className="flex h-16 rounded-lg overflow-hidden mb-3">
-                <div className="flex-1 bg-[#2ECC71]"></div>
-                <div className="flex-1 bg-black"></div>
+              <div className="flex h-20 rounded-xl overflow-hidden mb-4 shadow-lg">
+                <div className="flex-1 bg-[#D4AF37]"></div>
+                <div className="flex-1 bg-[#1C1C1C]"></div>
               </div>
-              <p className="text-sm font-medium">Verde + Preto</p>
-              <p className="text-xs text-slate-500">Inovação e contraste</p>
+              <p className="text-lg font-semibold text-slate-200">Dourado + Grafite</p>
+              <p className="text-sm text-slate-400 mt-1">Excelência e sofisticação premium</p>
             </div>
             <div className="text-center">
-              <div className="flex h-16 rounded-lg overflow-hidden mb-3">
-                <div className="flex-1 bg-[#3498DB]"></div>
-                <div className="flex-1 bg-[#2ECC71]"></div>
+              <div className="flex h-20 rounded-xl overflow-hidden mb-4 shadow-lg">
+                <div className="flex-1 bg-[#C0C0C0]"></div>
+                <div className="flex-1 bg-[#E5D8C0]"></div>
               </div>
-              <p className="text-sm font-medium">Azul + Verde</p>
-              <p className="text-xs text-slate-500">Gradiente principal</p>
+              <p className="text-lg font-semibold text-slate-200">Prata + Bege Quente</p>
+              <p className="text-sm text-slate-400 mt-1">Elegância e acolhimento humano</p>
             </div>
           </div>
         </div>
