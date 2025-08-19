@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Switch } from "@/components/ui/switch";
-import { Menu, Github, Link, Moon, Sun, FileText, Linkedin } from "lucide-react";
+import { Menu, Github, Link, Moon, Sun, FileText, Linkedin, Image, Accessibility } from "lucide-react";
 
 const FloatingMenu = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -99,6 +99,23 @@ const FloatingMenu = () => {
                       </a>
                     );
                   })}
+                </div>
+              </div>
+
+              <div className="border-t border-slate-700 pt-6">
+                <p className="text-sm text-slate-400 mb-4 uppercase tracking-wide">Navegação</p>
+                <div className="space-y-2">
+                  <a href="/" className="flex items-center space-x-3 p-2 text-slate-300 hover:text-blue-400 transition-colors">
+                    <span>🏠 Início</span>
+                  </a>
+                  <a href="/gallery" className="flex items-center space-x-3 p-2 text-slate-300 hover:text-blue-400 transition-colors">
+                    <Image className="h-4 w-4" />
+                    <span>Galeria de Assets</span>
+                  </a>
+                  <a href="/a11y" className="flex items-center space-x-3 p-2 text-slate-300 hover:text-blue-400 transition-colors">
+                    <Accessibility className="h-4 w-4" />
+                    <span>Menu A11y</span>
+                  </a>
                 </div>
               </div>
 

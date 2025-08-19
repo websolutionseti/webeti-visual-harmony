@@ -11,6 +11,8 @@ const Navigation = () => {
     { label: "Paleta Premium", href: "#colors" },
     { label: "Sistema Tipográfico", href: "#typography" },
     { label: "Identidade Visual", href: "#logo" },
+    { label: "Galeria", href: "/gallery" },
+    { label: "A11y", href: "/a11y" },
     { label: "Equipe", href: "#characters" },
     { label: "Aplicações", href: "#applications" },
   ];
