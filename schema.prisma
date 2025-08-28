@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  role      UserRole @default(USER)
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  logs      Log[]
+
+  @@map("users")
+}
+
+model TeamMember {
+  id        String   @id @default(cuid())
+  name      String
+  position  String
+  email     String   @unique
+  phone     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("team_members")
+}
+
+model DbConfig {
+  id         String   @id @default(cuid())
+  name       String
+  host       String
+  port       Int      @default(5432)
+  database   String
+  username   String
+  password   String
+  cname      String?
+  parameters Json?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("db_configs")
+}
+
+model Log {
+  id        String   @id @default(cuid())
+  action    String
+  entity    String?
+  entityId  String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  details   Json?
+  timestamp DateTime @default(now())
+
+  @@map("logs")
+}
+
+enum UserRole {
+  ADMIN
+  USER
+  READ_ONLY
+}
