@@ -1,0 +1,98 @@
+# Docker Compose for FullStackLovable Development
+# Production deployment should use Docker Swarm
+
+version: '3.8'
+
+services:
+  # Main Application
+  fullstacklovable:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: fullstacklovable-app
+    ports:
+      - "3000:80"
+    networks:
+      - fullstacklovable-network
+    environment:
+      - NODE_ENV=production
+      - VITE_API_URL=http://localhost:3000/api/v1
+    labels:
+      # Traefik Labels for development
+      - traefik.enable=true
+      - traefik.http.routers.fullstacklovable-dev.rule=Host(`localhost`)
+      - traefik.http.routers.fullstacklovable-dev.entrypoints=web
+      - traefik.http.services.fullstacklovable-dev.loadbalancer.server.port=80
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # Traefik Reverse Proxy (for development simulation)
+  traefik:
+    image: traefik:v2.10
+    container_name: fullstacklovable-traefik
+    command:
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"  # Traefik dashboard
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - fullstacklovable-network
+    restart: unless-stopped
+
+  # PostgreSQL Database (when Supabase is not used locally)
+  postgres:
+    image: postgres:15-alpine
+    container_name: fullstacklovable-db
+    environment:
+      POSTGRES_DB: fullstacklovable
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - fullstacklovable-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Redis Cache (optional for session management)
+  redis:
+    image: redis:7-alpine
+    container_name: fullstacklovable-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - fullstacklovable-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  fullstacklovable-network:
+    driver: bridge
+    name: fullstacklovable-network

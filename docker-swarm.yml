@@ -1,0 +1,132 @@
+# Docker Swarm Stack for Production Deployment
+# Deploy with: docker stack deploy -c docker-swarm.yml fullstacklovable
+
+version: '3.8'
+
+services:
+  # Main Application Service
+  app:
+    image: websolutions/fullstacklovable:latest
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      placement:
+        constraints:
+          - node.role == worker
+      labels:
+        # Traefik Configuration
+        - traefik.enable=true
+        - traefik.constraint-label=traefik-public
+        - traefik.docker.network=traefik-public
+        
+        # HTTP Router
+        - traefik.http.routers.fullstacklovable-http.rule=Host(`ds.websolutions.eti.br`)
+        - traefik.http.routers.fullstacklovable-http.entrypoints=web
+        - traefik.http.routers.fullstacklovable-http.middlewares=https-redirect
+        
+        # HTTPS Router
+        - traefik.http.routers.fullstacklovable-https.rule=Host(`ds.websolutions.eti.br`)
+        - traefik.http.routers.fullstacklovable-https.entrypoints=websecure
+        - traefik.http.routers.fullstacklovable-https.tls=true
+        - traefik.http.routers.fullstacklovable-https.tls.certresolver=le
+        
+        # Service Configuration
+        - traefik.http.services.fullstacklovable.loadbalancer.server.port=80
+        
+        # Security Headers
+        - traefik.http.middlewares.fullstacklovable-headers.headers.accesscontrolallowmethods=GET,POST,PUT,DELETE,OPTIONS
+        - traefik.http.middlewares.fullstacklovable-headers.headers.accesscontrolalloworigin=https://ds.websolutions.eti.br,https://*.websolutions.eti.br,https://*.online.des.br
+        - traefik.http.middlewares.fullstacklovable-headers.headers.accesscontrolallowcredentials=true
+        - traefik.http.middlewares.fullstacklovable-headers.headers.accesscontrolmaxage=100
+        - traefik.http.middlewares.fullstacklovable-headers.headers.addvaryheader=true
+        
+        # Apply middlewares
+        - traefik.http.routers.fullstacklovable-https.middlewares=fullstacklovable-headers
+        
+        # Rate Limiting
+        - traefik.http.middlewares.fullstacklovable-ratelimit.ratelimit.burst=100
+        - traefik.http.middlewares.fullstacklovable-ratelimit.ratelimit.average=50
+        
+    environment:
+      - NODE_ENV=production
+      - VITE_API_URL=https://ds.websolutions.eti.br/api/v1
+    networks:
+      - traefik-public
+      - fullstacklovable-internal
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # API Module (Future Supabase Edge Functions alternative)
+  api:
+    image: websolutions/fullstacklovable-api:latest
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      placement:
+        constraints:
+          - node.role == worker
+      labels:
+        - traefik.enable=true
+        - traefik.constraint-label=traefik-public
+        - traefik.docker.network=traefik-public
+        - traefik.http.routers.fullstacklovable-api.rule=Host(`ds.websolutions.eti.br`) && PathPrefix(`/api`)
+        - traefik.http.routers.fullstacklovable-api.entrypoints=websecure
+        - traefik.http.routers.fullstacklovable-api.tls=true
+        - traefik.http.routers.fullstacklovable-api.tls.certresolver=le
+        - traefik.http.services.fullstacklovable-api.loadbalancer.server.port=3001
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET}
+    networks:
+      - traefik-public
+      - fullstacklovable-internal
+    secrets:
+      - database_url
+      - jwt_secret
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  traefik-public:
+    external: true
+  fullstacklovable-internal:
+    driver: overlay
+    attachable: true
+
+secrets:
+  database_url:
+    external: true
+  jwt_secret:
+    external: true
+
+# Global Configuration
+configs:
+  nginx_config:
+    file: ./nginx.conf
+  
+# Deploy Commands:
+# 1. docker network create --driver overlay traefik-public
+# 2. echo "your_database_url" | docker secret create database_url -
+# 3. echo "your_jwt_secret" | docker secret create jwt_secret -
+# 4. docker stack deploy -c docker-swarm.yml fullstacklovable
