@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import GlobalNavigation from "@/components/GlobalNavigation";
 import Index from "./pages/Index";
 import Gallery from "./pages/Gallery";
 import A11yDemo from "./pages/A11yDemo";
@@ -26,8 +27,6 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
       <BrowserRouter>
         <Routes>
           {/* Public Routes */}
@@ -39,14 +38,20 @@ const App = () => (
           {/* Protected Admin Routes */}
           <Route path="/admin" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/admin/equipe" element={<ProtectedRoute><TeamManagement /></ProtectedRoute>} />
-          <Route path="/admin/configuracoes" element={<ProtectedRoute><DatabaseConfig /></ProtectedRoute>} />
+          <Route path="/admin/config" element={<ProtectedRoute><DatabaseConfig /></ProtectedRoute>} />
           <Route path="/admin/logs" element={<ProtectedRoute><AuditLogs /></ProtectedRoute>} />
           <Route path="/admin/api-docs" element={<ProtectedRoute><ApiDocs /></ProtectedRoute>} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        
+        {/* Global Navigation - appears on all pages */}
+        <GlobalNavigation />
       </BrowserRouter>
+      
+      <Toaster />
+      <Sonner />
     </TooltipProvider>
   </QueryClientProvider>
 );
