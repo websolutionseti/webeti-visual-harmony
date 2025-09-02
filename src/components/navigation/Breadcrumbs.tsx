@@ -11,6 +11,7 @@ const Breadcrumbs = () => {
   const breadcrumbNameMap: Record<string, string> = {
     'admin': 'Administração',
     'equipe': 'Equipe',
+    'personas': 'Personas UX',
     'config': 'Configurações',
     'logs': 'Logs de Auditoria',
     'api-docs': 'Documentação da API',

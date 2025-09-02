@@ -16,6 +16,7 @@ import TeamManagement from "./pages/TeamManagement";
 import DatabaseConfig from "./pages/DatabaseConfig";
 import AuditLogs from "./pages/AuditLogs";
 import ApiDocs from "./pages/ApiDocs";
+import PersonaGallery from "./pages/PersonaGallery";
 import 'antd/dist/reset.css';
 
 const queryClient = new QueryClient();
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/admin/config" element={<ProtectedRoute><DatabaseConfig /></ProtectedRoute>} />
           <Route path="/admin/logs" element={<ProtectedRoute><AuditLogs /></ProtectedRoute>} />
           <Route path="/admin/api-docs" element={<ProtectedRoute><ApiDocs /></ProtectedRoute>} />
+          <Route path="/admin/personas" element={<ProtectedRoute><PersonaGallery /></ProtectedRoute>} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

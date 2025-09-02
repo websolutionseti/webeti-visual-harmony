@@ -143,13 +143,13 @@ const ApiDocs = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
           <div>
             <Text strong>Base URL:</Text>
-            <div className="bg-muted p-2 rounded mt-1 font-mono">
+            <div className="bg-card border p-2 rounded mt-1 font-mono text-foreground">
               https://api.webeti.com/v1
             </div>
           </div>
           <div>
             <Text strong>Formato:</Text>
-            <div className="bg-muted p-2 rounded mt-1">
+            <div className="bg-card border p-2 rounded mt-1 text-foreground">
               JSON (application/json)
             </div>
           </div>
@@ -161,7 +161,7 @@ const ApiDocs = () => {
         <Paragraph>
           A API utiliza JWT (JSON Web Tokens) para autenticação. Inclua o token no header Authorization:
         </Paragraph>
-        <div className="bg-muted p-3 rounded font-mono">
+        <div className="bg-card border p-3 rounded font-mono text-foreground">
           Authorization: Bearer &lt;seu_jwt_token&gt;
         </div>
       </Card>
@@ -200,7 +200,7 @@ const ApiDocs = () => {
                 <div>
                   <Text strong>Request Body:</Text>
                   <div className="relative">
-                    <pre className="bg-muted p-3 rounded mt-1 text-sm overflow-x-auto">
+                    <pre className="bg-card border p-3 rounded mt-1 text-sm overflow-x-auto text-foreground font-source-code">
                       {endpoint.body}
                     </pre>
                     <Button
@@ -216,7 +216,7 @@ const ApiDocs = () => {
               <div>
                 <Text strong>Response:</Text>
                 <div className="relative">
-                  <pre className="bg-muted p-3 rounded mt-1 text-sm overflow-x-auto">
+                  <pre className="bg-card border p-3 rounded mt-1 text-sm overflow-x-auto text-foreground font-source-code">
                     {endpoint.response}
                   </pre>
                   <Button
@@ -242,7 +242,7 @@ const ApiDocs = () => {
           <div>
             <Text strong>cURL:</Text>
             <div className="relative">
-              <pre className="bg-muted p-3 rounded mt-1 text-sm overflow-x-auto">
+              <pre className="bg-card border p-3 rounded mt-1 text-sm overflow-x-auto text-foreground font-source-code">
 {`curl -X POST https://api.webeti.com/v1/auth/login \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -267,7 +267,7 @@ const ApiDocs = () => {
           <div>
             <Text strong>JavaScript (fetch):</Text>
             <div className="relative">
-              <pre className="bg-muted p-3 rounded mt-1 text-sm overflow-x-auto">
+              <pre className="bg-card border p-3 rounded mt-1 text-sm overflow-x-auto text-foreground font-source-code">
 {`const response = await fetch('https://api.webeti.com/v1/auth/login', {
   method: 'POST',
   headers: {
@@ -308,7 +308,7 @@ const token = data.token;`)}
       <Card>
         <Title level={4}>Exemplo: Criar Membro da Equipe</Title>
         <div className="relative">
-          <pre className="bg-muted p-3 rounded mt-1 text-sm overflow-x-auto">
+          <pre className="bg-card border p-3 rounded mt-1 text-sm overflow-x-auto text-foreground font-source-code">
 {`const response = await fetch('https://api.webeti.com/v1/team-members', {
   method: 'POST',
   headers: {

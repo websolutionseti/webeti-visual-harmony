@@ -26,8 +26,8 @@ All colors MUST be HSL.
     --secondary: 0 0% 75%;      /* Prata Metálico #C0C0C0 */
     --secondary-foreground: 210 11% 11%;
 
-    --muted: 210 11% 15%;
-    --muted-foreground: 0 0% 75%;
+    --muted: 210 11% 20%;       /* Increased contrast for dark theme */
+    --muted-foreground: 0 0% 85%;  /* Better readability */
 
     --accent: 45 85% 50%;       /* Dourado Suave #D4AF37 */
     --accent-foreground: 210 11% 11%;
@@ -89,7 +89,7 @@ All colors MUST be HSL.
     --secondary-foreground: 210 11% 11%;
 
     --muted: 0 0% 92%;
-    --muted-foreground: 210 11% 40%;
+    --muted-foreground: 210 11% 30%;  /* Better contrast for light theme */
 
     --accent: 45 85% 50%;       /* Dourado mantido */
     --accent-foreground: 0 0% 100%;
