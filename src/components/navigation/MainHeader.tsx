@@ -46,6 +46,7 @@ const MainHeader = () => {
   const publicNavItems = [
     { to: "/", label: "Início" },
     { to: "/gallery", label: "Galeria" },
+    { to: "/briefings", label: "Briefings" },
     { to: "/a11y", label: "Acessibilidade" }
   ];
 

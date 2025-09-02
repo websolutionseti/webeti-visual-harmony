@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import GlobalNavigation from "@/components/GlobalNavigation";
 import MainHeader from "@/components/navigation/MainHeader";
 import { QuickActions } from "@/components/navigation/QuickActions";
+import { ModuleIntegration } from "@/modules/briefing/integration/ModuleIntegration";
 import Index from "./pages/Index";
 import Gallery from "./pages/Gallery";
 import A11yDemo from "./pages/A11yDemo";
@@ -46,6 +47,9 @@ const App = () => (
           <Route path="/admin/logs" element={<ProtectedRoute><AuditLogs /></ProtectedRoute>} />
           <Route path="/admin/api-docs" element={<ProtectedRoute><ApiDocs /></ProtectedRoute>} />
           <Route path="/admin/personas" element={<ProtectedRoute><PersonaGallery /></ProtectedRoute>} />
+          
+          {/* Briefing Module Routes */}
+          <Route path="/briefings/*" element={<ProtectedRoute><ModuleIntegration /></ProtectedRoute>} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
