@@ -4,6 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import GlobalNavigation from "@/components/GlobalNavigation";
+import MainHeader from "@/components/navigation/MainHeader";
+import { QuickActions } from "@/components/navigation/QuickActions";
 import Index from "./pages/Index";
 import Gallery from "./pages/Gallery";
 import A11yDemo from "./pages/A11yDemo";
@@ -28,6 +30,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <BrowserRouter>
+        <MainHeader />
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Index />} />
@@ -46,8 +49,9 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
         
-        {/* Global Navigation - appears on all pages */}
+        {/* Navigation Components */}
         <GlobalNavigation />
+        <QuickActions />
       </BrowserRouter>
       
       <Toaster />

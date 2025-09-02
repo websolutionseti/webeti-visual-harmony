@@ -20,9 +20,11 @@ import {
   Book,
   Home,
   LogOut,
-  Shield
+  Shield,
+  HelpCircle
 } from "lucide-react";
 
+// Keeping this as a fallback quick menu for specific pages
 const GlobalNavigation = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -33,16 +35,20 @@ const GlobalNavigation = () => {
   const user = JSON.parse(localStorage.getItem('user') || 'null');
   const isAuthenticated = !!user;
   const isAdminArea = location.pathname.startsWith('/admin') || location.pathname === '/login';
+  
+  // Only show on specific pages where quick access is needed
+  const showOnPages = ['/', '/gallery', '/a11y'];
+  const shouldShow = showOnPages.includes(location.pathname);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      setIsVisible(scrollTop > 300);
+      setIsVisible(scrollTop > 400 && shouldShow);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [shouldShow]);
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
@@ -94,14 +100,15 @@ const GlobalNavigation = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-8 right-8 z-50">
+    <div className="fixed bottom-8 right-8 z-40">
       <Sheet>
         <SheetTrigger asChild>
           <Button
             size="icon"
-            className="h-14 w-14 rounded-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary shadow-2xl border-2 border-primary/20"
+            className="h-12 w-12 rounded-full bg-primary/90 hover:bg-primary shadow-xl border border-primary/20"
+            title="Menu Rápido"
           >
-            <Menu className="h-6 w-6" />
+            <HelpCircle className="h-5 w-5" />
           </Button>
         </SheetTrigger>
         <SheetContent side="right" className="w-80 bg-background/95 backdrop-blur-md border-border">
@@ -109,7 +116,7 @@ const GlobalNavigation = () => {
             {/* Header */}
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center space-x-2">
-                <h3 className="text-xl font-semibold text-foreground">Menu Global</h3>
+                <h3 className="text-xl font-semibold text-foreground">Menu Rápido</h3>
                 {isAuthenticated && (
                   <Badge variant="secondary" className="text-xs">
                     Admin

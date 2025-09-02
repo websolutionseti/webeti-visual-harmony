@@ -5,6 +5,7 @@ import { userController } from '@/controllers/userController';
 import { TeamMemberCard } from '@/views/team/TeamMemberCard';
 import { PersonaCard } from '@/views/team/PersonaCard';
 import AdminLayout from '@/components/AdminLayout';
+import { Breadcrumbs } from '@/components/navigation/Breadcrumbs';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -251,7 +252,8 @@ const TeamManagement = () => {
 
   return (
     <AdminLayout>
-      <div className="container mx-auto px-6 py-8">
+      <div className="container mx-auto px-6 py-8 pt-20">
+        <Breadcrumbs />
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">

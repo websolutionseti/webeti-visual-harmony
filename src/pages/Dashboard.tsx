@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import AdminLayout from '@/components/AdminLayout';
+import { Breadcrumbs } from '@/components/navigation/Breadcrumbs';
 import { useToast } from '@/hooks/use-toast';
 
 const { Title, Paragraph } = Typography;
@@ -56,7 +57,8 @@ const Dashboard = () => {
 
   return (
     <AdminLayout>
-      <div className="p-6">
+      <div className="p-6 pt-20">
+        <Breadcrumbs />
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <div>
